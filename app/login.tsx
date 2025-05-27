@@ -1,12 +1,32 @@
+import { login } from "@/service/auth.service";
+import { useMutation } from "@tanstack/react-query";
 import { router, Stack } from "expo-router";
 import { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import InputField from "../components/Input";
+import { useAuthStore } from "../state/auth.state";
 
 export default function LoginScreen() {
+  const { setToken, setUser } = useAuthStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: login,
+    onSuccess: ({ data }) => {
+      // Invalidate and refetch
+      setToken(data.access_token);
+      setUser(data.user);
+      router.replace("/(tabs)");
+    },
+  });
+
+  const handleLogin = () => {
+    if (email === "" && password === "") return;
+
+    mutate({ email: email.toLowerCase(), password });
+  };
 
   return (
     <>
@@ -20,6 +40,11 @@ export default function LoginScreen() {
           </Text>
         </View>
         <View className="gap-4">
+          {error && (
+            <Text className="text-red-500">
+              {error.message || "Something went wrong"}
+            </Text>
+          )}
           <View className="gap-1">
             <Text className="text-base text-gray-400">E-mail Address</Text>
             <InputField
@@ -47,12 +72,13 @@ export default function LoginScreen() {
           </View>
           <View className="mt-6">
             <TouchableOpacity
-              onPress={() => {
-                console.log(email, password);
-              }}
-              className="bg-[#08A045] items-center px-6 py-4 rounded-full w-full"
+              onPress={handleLogin}
+              disabled={isPending || email === "" || password === ""}
+              className="bg-[#08A045] disabled:bg-gray-400 items-center px-6 py-4 rounded-full w-full"
             >
-              <Text className="text-white font-semibold">Login</Text>
+              <Text className="text-white font-semibold">
+                {isPending ? "Logging in" : "Login"}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -65,7 +91,7 @@ export default function LoginScreen() {
               router.push("/signup");
             }}
           >
-            <Text className="text-[#08A045] font-semibold">Sign Up</Text>
+            <Text className="text-[#08A045] font-semibold">Register</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
