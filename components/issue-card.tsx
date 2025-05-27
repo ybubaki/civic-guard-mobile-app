@@ -28,7 +28,13 @@ const IssueCard: React.FC<IssueCardProps> = ({ issue }) => {
           }).format(new Date(issue.createdAt))}
         </Text>
         <View className="">
-          <Text className="text-lg font-semibold">This is the title.</Text>
+          <Text
+            className="text-lg font-semibold"
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
+            {issue.title}
+          </Text>
           <Text
             numberOfLines={2}
             ellipsizeMode="tail"

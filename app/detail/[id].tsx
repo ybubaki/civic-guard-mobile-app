@@ -39,7 +39,7 @@ export default function IssueDetailsScreen() {
             className="w-full h-72 rounded-lg"
           />
           <View className="mt-6">
-            <Text className="font-semibold text-xl">This is the title</Text>
+            <Text className="font-semibold text-xl">{data?.data?.title}</Text>
             <Text className="text-gray-500 text-xs">
               {new Intl.DateTimeFormat("en-US", {
                 day: "numeric",
