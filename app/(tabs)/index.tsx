@@ -50,11 +50,11 @@ export default function HomeScreen() {
             />
           </View>
         </View>
-        <View className="mt-6 gap-4">
+        <View className="my-6 gap-4">
           <Text className="font-semibold text-lg">
             Recently reported issues
           </Text>
-          <View>
+          <View className="flex-1">
             <IssueList />
           </View>
         </View>

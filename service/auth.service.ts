@@ -1,6 +1,7 @@
 import axios from "axios";
+import { API_BASE_URL } from "./index";
 
-const BASE_URL = "http://10.42.0.1:3000/api/auth";
+const BASE_URL = `${API_BASE_URL}/auth`;
 
 export const register = async (userData: RegisterData) => {
   try {

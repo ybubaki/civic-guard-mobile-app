@@ -40,6 +40,17 @@ export default function TabLayout() {
             ),
           }}
         />
+        <Tabs.Screen
+          name="settings"
+          options={{
+            title: "Settings",
+            tabBarActiveTintColor: "#08A045",
+            tabBarInactiveTintColor: "#9ca3af",
+            tabBarIcon: ({ color }) => (
+              <Feather size={28} name="settings" color={color} />
+            ),
+          }}
+        />
       </Tabs>
     </>
   );

@@ -8,6 +8,7 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <Stack>
+        <Stack.Screen name="login" options={{ headerShown: false }} />
         <Stack.Screen
           name="create-report"
           options={{
@@ -15,6 +16,15 @@ export default function RootLayout() {
             animation: "slide_from_bottom",
             sheetInitialDetentIndex: 1,
             sheetAllowedDetents: [0.5, 1],
+            sheetGrabberVisible: true,
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="detail/[id]"
+          options={{
+            presentation: "formSheet",
+            animation: "slide_from_bottom",
             sheetGrabberVisible: true,
             headerShown: false,
           }}

@@ -1,6 +1,6 @@
 import useGetIssues from "@/hooks/useGetIssues";
 import { FlashList } from "@shopify/flash-list";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import EmptyCard from "./empty-card";
 import IssueCard from "./issue-card";
 
@@ -15,6 +15,7 @@ const IssueList = () => {
       data={data.data.slice(0, 3)}
       ListEmptyComponent={<EmptyCard title="No report found" />}
       estimatedItemSize={100}
+      ItemSeparatorComponent={() => <View className="h-4" />}
       renderItem={({ item }) => <IssueCard issue={item} />}
     />
   );
