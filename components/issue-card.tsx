@@ -61,7 +61,7 @@ const IssueCard: React.FC<IssueCardProps> = ({ issue }) => {
             </Text>
           </View>
           <Text className="text-gray-500 text-xs bg-gray-200 px-2 py-1 rounded-full self-start">
-            {issue.classification}
+            {issue.category}
           </Text>
         </View>
       </View>

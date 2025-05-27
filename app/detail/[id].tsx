@@ -58,7 +58,7 @@ export default function IssueDetailsScreen() {
             <View className="flex-row items-center gap-2">
               <Text className="text-base font-medium">Category:</Text>
               <Text className="text-gray-500 text-base">
-                {data?.data?.classification}
+                {data?.data?.category}
               </Text>
             </View>
           </View>
