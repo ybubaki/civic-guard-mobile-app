@@ -27,6 +27,7 @@ export default function TabLayout() {
             tabBarIcon: ({ color }) => (
               <Feather size={28} name="search" color={color} />
             ),
+            headerShown: false,
           }}
         />
         <Tabs.Screen

@@ -7,7 +7,6 @@ export default function MessageInfoScreen() {
   const { message } = useGeneralStore();
   return (
     <>
-      <Stack.Screen name="message-info" options={{ headerShown: false }} />
       <SafeAreaView className="flex-1 bg-white">
         <View
           style={{

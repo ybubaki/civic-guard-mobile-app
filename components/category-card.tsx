@@ -3,11 +3,12 @@ import { ImageBackground, Text, TouchableOpacity, View } from "react-native";
 interface CategoryCardProps {
   title: string;
   url: string;
+  onPress: () => void;
 }
 
-const CategoryCard: React.FC<CategoryCardProps> = ({ title, url }) => {
+const CategoryCard: React.FC<CategoryCardProps> = ({ title, url, onPress }) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <ImageBackground
         source={{
           uri: url,

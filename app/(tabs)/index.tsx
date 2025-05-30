@@ -4,9 +4,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import CategoryCard from "../../components/category-card";
 import IssueList from "../../components/issue-list";
 import { useAuthStore } from "../../state/auth.state";
+import { StatusBar } from "expo-status-bar";
+import { useGeneralStore } from "../../state/general.state";
 
 export default function HomeScreen() {
   const { token, user } = useAuthStore();
+  const { setSearch } = useGeneralStore();
 
   if (!token) {
     router.replace("/login");
@@ -31,22 +34,42 @@ export default function HomeScreen() {
             <CategoryCard
               title="Damaged Road"
               url="https://images.unsplash.com/photo-1617252820859-00a22c77ec0c?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              onPress={() => {
+                setSearch("damaged road");
+                router.push("/(tabs)/explore");
+              }}
             />
             <CategoryCard
               title="Flood"
               url="https://plus.unsplash.com/premium_photo-1733342648363-81cd437f9e43?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              onPress={() => {
+                setSearch("flood");
+                router.push("/(tabs)/explore");
+              }}
             />
             <CategoryCard
               title="Homeless People"
               url="https://images.unsplash.com/photo-1595489835937-4987a9b42ad4?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              onPress={() => {
+                setSearch("homeless people");
+                router.push("/(tabs)/explore");
+              }}
             />
             <CategoryCard
               title="Broken Streetlights"
               url="https://images.unsplash.com/photo-1693329901004-0b6e0b73d6df?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              onPress={() => {
+                setSearch("broken streetlights");
+                router.push("/(tabs)/explore");
+              }}
             />
             <CategoryCard
               title="Community Dump"
               url="https://images.unsplash.com/photo-1589627762073-9aca94506fa1?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              onPress={() => {
+                setSearch("overflowing community dump");
+                router.push("/(tabs)/explore");
+              }}
             />
           </View>
         </View>
@@ -59,6 +82,7 @@ export default function HomeScreen() {
           </View>
         </View>
       </ScrollView>
+      <StatusBar style="dark" />
     </SafeAreaView>
   );
 }

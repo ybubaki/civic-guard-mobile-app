@@ -25,7 +25,8 @@ export default function HistoryScreen() {
         </TouchableOpacity>
       </View>
       <FlashList
-        className="flex-1 p-4 bg-white"
+        className="flex-1 bg-white"
+        contentContainerStyle={{ padding: 16 }}
         data={data.data}
         renderItem={({ item }) => <IssueCard issue={item} />}
         ListEmptyComponent={<EmptyCard title="You don't have any report" />}

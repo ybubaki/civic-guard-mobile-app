@@ -5,6 +5,12 @@ interface RegisterData {
   password: string;
 }
 
+interface UpdateData {
+  name?: string;
+  username?: string;
+  email?: string;
+}
+
 interface LoginData {
   email: string;
   password: string;

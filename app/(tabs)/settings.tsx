@@ -32,10 +32,20 @@ export default function SettingScreen() {
         <Text className="font-semibold text-2xl">Settings</Text>
         <View className="mt-4">
           <Text className="font-semibold text-lg">Account</Text>
-          <TouchableOpacity className="mt-2 border-b border-gray-300 py-4">
+          <TouchableOpacity
+            onPress={() => {
+              router.push("/manage_account");
+            }}
+            className="mt-2 border-b border-gray-300 py-4"
+          >
             <Text className="text-gray-500 text-lg">Manage your account</Text>
           </TouchableOpacity>
-          <TouchableOpacity className="mt-2 border-b border-gray-300 py-4">
+          <TouchableOpacity
+            onPress={() => {
+              router.push("/change_password");
+            }}
+            className="mt-2 border-b border-gray-300 py-4"
+          >
             <Text className="text-gray-500 text-lg">Change password</Text>
           </TouchableOpacity>
         </View>

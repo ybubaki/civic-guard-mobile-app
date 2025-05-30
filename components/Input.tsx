@@ -6,6 +6,7 @@ interface InputFieldProps {
   value?: string;
   icon?: any;
   keyboardType?: string;
+  defaultValue?: string;
   onChangeText?: (text: string) => void;
   secureTextEntry?: boolean;
 }
@@ -13,6 +14,7 @@ interface InputFieldProps {
 const InputField: React.FC<InputFieldProps> = ({
   placeholder,
   value,
+  defaultValue,
   icon,
   onChangeText,
   secureTextEntry,
@@ -23,6 +25,7 @@ const InputField: React.FC<InputFieldProps> = ({
       <TextInput
         placeholder={placeholder}
         value={value}
+        defaultValue={defaultValue}
         cursorColor="black"
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}

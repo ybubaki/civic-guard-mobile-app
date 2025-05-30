@@ -79,6 +79,20 @@ export const updateIssue = async (
   }
 };
 
+export const searchIssues = async (search: string, token: string) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/search?search=${search}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error: any) {
+    console.error("Error searching issues:", error);
+    throw error?.response?.data || "Internal Server Error";
+  }
+};
+
 export const deleteIssue = async (id: string, token: string) => {
   try {
     const response = await axios.delete(`${BASE_URL}/${id}`, {
