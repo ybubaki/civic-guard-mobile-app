@@ -4,7 +4,7 @@ import { Feather } from "@expo/vector-icons";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as ImagePicker from "expo-image-picker";
 import { router } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Button,
   Image,
@@ -18,11 +18,16 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import * as Location from "expo-location";
 
 export default function CreateReport() {
   const [description, setDescription] = useState("");
   const [city, setCity] = useState("");
   const [image, setImage] = useState<any | null>(null);
+  const [location, setLocation] = useState<Location.LocationObject | null>(
+    null
+  );
+
   const { token } = useAuthStore();
 
   const queryClient = useQueryClient();
@@ -35,6 +40,21 @@ export default function CreateReport() {
       router.dismiss();
     },
   });
+
+  useEffect(() => {
+    async function getCurrentLocation() {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        alert("Permission to access location was denied");
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    }
+
+    getCurrentLocation();
+  }, []);
 
   // const pickImage = async () => {
   //   // No permissions request is necessary for launching the image library
@@ -70,13 +90,21 @@ export default function CreateReport() {
   };
 
   const handleReport = async () => {
-    if (description === "" || city === "" || !image) {
+    if (
+      description === "" ||
+      city === "" ||
+      !image ||
+      !location?.coords.latitude ||
+      !location?.coords.longitude
+    ) {
       return;
     }
 
     const formData = new FormData();
     formData.append("description", description);
     formData.append("city", city);
+    formData.append("latitude", location?.coords.latitude.toString());
+    formData.append("longitude", location?.coords.longitude.toString());
     formData.append("photo", {
       uri: image.uri,
       type: image.mimeType,

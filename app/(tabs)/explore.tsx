@@ -4,15 +4,22 @@ import { FlashList } from "@shopify/flash-list";
 import { Feather } from "@expo/vector-icons";
 import { TouchableOpacity, TextInput, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import useGetSearchedIssues from "@/hooks/useGetSearchedIssues";
 import { useGeneralStore } from "@/state/general.state";
+import { useFocusEffect } from "expo-router";
 
 export default function ExploreScreen() {
   const [input, setInput] = useState("");
   const { search, setSearch } = useGeneralStore();
 
-  // console.log(search);
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        setSearch("");
+      };
+    }, [])
+  );
 
   const { data, isPending, error } = useGetSearchedIssues(search);
 

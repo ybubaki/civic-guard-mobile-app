@@ -36,7 +36,7 @@ export default function HomeScreen() {
               url="https://images.unsplash.com/photo-1617252820859-00a22c77ec0c?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               onPress={() => {
                 setSearch("damaged road");
-                router.push("/(tabs)/explore");
+                router.push("/(tabs)/explore?category=damaged road");
               }}
             />
             <CategoryCard
@@ -44,7 +44,7 @@ export default function HomeScreen() {
               url="https://plus.unsplash.com/premium_photo-1733342648363-81cd437f9e43?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               onPress={() => {
                 setSearch("flood");
-                router.push("/(tabs)/explore");
+                router.push("/(tabs)/explore?category=flood");
               }}
             />
             <CategoryCard
@@ -52,7 +52,7 @@ export default function HomeScreen() {
               url="https://images.unsplash.com/photo-1595489835937-4987a9b42ad4?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               onPress={() => {
                 setSearch("homeless people");
-                router.push("/(tabs)/explore");
+                router.push("/(tabs)/explore?category=homeless people");
               }}
             />
             <CategoryCard
@@ -60,7 +60,7 @@ export default function HomeScreen() {
               url="https://images.unsplash.com/photo-1693329901004-0b6e0b73d6df?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               onPress={() => {
                 setSearch("broken streetlights");
-                router.push("/(tabs)/explore");
+                router.push("/(tabs)/explore?category=broken streetlights");
               }}
             />
             <CategoryCard
@@ -68,7 +68,9 @@ export default function HomeScreen() {
               url="https://images.unsplash.com/photo-1589627762073-9aca94506fa1?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               onPress={() => {
                 setSearch("overflowing community dump");
-                router.push("/(tabs)/explore");
+                router.push(
+                  "/(tabs)/explore?category=overflowing community dump"
+                );
               }}
             />
           </View>

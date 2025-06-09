@@ -8,8 +8,6 @@ export default function IssueDetailsScreen() {
   const { id } = useLocalSearchParams();
   const { data, isPending, error } = useGetIssueById(id as string);
 
-  console.log(id);
-
   return (
     <ScrollView className="flex-1 p-4">
       <View className="flex-row items-center justify-between py-4 px-2 border-b border-gray-300">
