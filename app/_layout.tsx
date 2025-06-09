@@ -62,6 +62,12 @@ export default function RootLayout() {
             sheetAllowedDetents: [0.5, 1],
           }}
         />
+        <Stack.Screen
+          name="help"
+          options={{
+            title: "Help & Support",
+          }}
+        />
       </Stack>
       <StatusBar style="dark" />
     </QueryClientProvider>

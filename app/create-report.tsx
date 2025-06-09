@@ -31,15 +31,34 @@ export default function CreateReport() {
     mutationFn: createIssue,
     onSuccess: () => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["issues"] });
+      queryClient.invalidateQueries();
       router.dismiss();
     },
   });
 
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ["images"],
+  // const pickImage = async () => {
+  //   // No permissions request is necessary for launching the image library
+  //   let result = await ImagePicker.launchImageLibraryAsync({
+  //     mediaTypes: ["images"],
+  //     allowsEditing: true,
+  //     aspect: [4, 3],
+  //     quality: 1,
+  //   });
+
+  //   if (!result.canceled) {
+  //     setImage(result.assets[0]);
+  //   }
+  // };
+
+  const takePhoto = async () => {
+    // Request camera permissions
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    if (status !== "granted") {
+      alert("Camera permission is required to take a photo.");
+      return;
+    }
+
+    let result = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
@@ -99,7 +118,7 @@ export default function CreateReport() {
               )}
               <Button
                 title="Pick an image from camera roll"
-                onPress={pickImage}
+                onPress={takePhoto}
               />
             </View>
             <View className="gap-1 mt-4">

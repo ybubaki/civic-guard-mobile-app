@@ -28,3 +28,9 @@ interface Issue {
   createdAt: string;
   updatedAt: string;
 }
+
+interface Message {
+  id: number;
+  type: string;
+  message: string;
+}

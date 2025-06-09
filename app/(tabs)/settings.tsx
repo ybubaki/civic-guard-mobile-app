@@ -51,7 +51,12 @@ export default function SettingScreen() {
         </View>
         <View className="mt-6">
           <Text className="font-semibold text-lg">Help</Text>
-          <TouchableOpacity className="mt-2 border-b border-gray-300 py-4">
+          <TouchableOpacity
+            onPress={() => {
+              router.push("/help");
+            }}
+            className="mt-2 border-b border-gray-300 py-4"
+          >
             <Text className="text-gray-500 text-lg">Get help</Text>
           </TouchableOpacity>
         </View>

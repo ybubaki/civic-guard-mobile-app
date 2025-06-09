@@ -4,7 +4,10 @@ import { Stack, Tabs } from "expo-router";
 export default function TabLayout() {
   return (
     <>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="(tabs)"
+        options={{ headerShown: false, title: "CivicGuard" }}
+      />
       <Tabs>
         <Tabs.Screen
           name="index"
