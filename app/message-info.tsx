@@ -1,5 +1,5 @@
 import { Feather } from "@expo/vector-icons";
-import { router, Stack } from "expo-router";
+import { router } from "expo-router";
 import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import { useGeneralStore } from "../state/general.state";
 

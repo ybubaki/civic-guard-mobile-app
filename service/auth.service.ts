@@ -54,3 +54,23 @@ export const changePassword = async (data: any) => {
     throw error?.response?.data;
   }
 };
+
+export const verifyEmail = async (data: any) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/send-otp`, data);
+    return response.data;
+  } catch (error: any) {
+    console.error("Error verifying email:", error?.response?.data);
+    throw error?.response?.data;
+  }
+};
+
+export const forgotPassword = async (data: any) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/forgot-password`, data);
+    return response.data;
+  } catch (error: any) {
+    console.error("Error forgot password:", error?.response?.data);
+    throw error?.response?.data;
+  }
+};

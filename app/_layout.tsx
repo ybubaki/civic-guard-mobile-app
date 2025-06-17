@@ -68,6 +68,12 @@ export default function RootLayout() {
             title: "Help & Support",
           }}
         />
+        <Stack.Screen
+          name="forgot-password"
+          options={{
+            title: "Forgot Password",
+          }}
+        />
       </Stack>
       <StatusBar style="dark" />
     </QueryClientProvider>
