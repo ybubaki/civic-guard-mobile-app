@@ -66,6 +66,7 @@ export default function RootLayout() {
           name="help"
           options={{
             title: "Help & Support",
+            headerShown: false,
           }}
         />
         <Stack.Screen

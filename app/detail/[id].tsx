@@ -3,10 +3,13 @@ import { BASE_URL } from "@/service";
 import { Feather } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import MyMapView from "@/components/map-view";
 
 export default function IssueDetailsScreen() {
   const { id } = useLocalSearchParams();
   const { data, isPending, error } = useGetIssueById(id as string);
+
+  console.log(typeof data?.data?.latitude);
 
   return (
     <ScrollView className="flex-1 p-4">
@@ -66,6 +69,12 @@ export default function IssueDetailsScreen() {
               {data?.data?.description}
             </Text>
           </View>
+          {data?.data?.latitude && data?.data?.longitude && (
+            <MyMapView
+              latitude={parseFloat(data?.data?.latitude)}
+              longitude={parseFloat(data?.data?.longitude)}
+            />
+          )}
         </View>
       )}
     </ScrollView>
