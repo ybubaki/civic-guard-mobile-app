@@ -56,19 +56,19 @@ export default function CreateReport() {
     getCurrentLocation();
   }, []);
 
-  // const pickImage = async () => {
-  //   // No permissions request is necessary for launching the image library
-  //   let result = await ImagePicker.launchImageLibraryAsync({
-  //     mediaTypes: ["images"],
-  //     allowsEditing: true,
-  //     aspect: [4, 3],
-  //     quality: 1,
-  //   });
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ["images"],
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
 
-  //   if (!result.canceled) {
-  //     setImage(result.assets[0]);
-  //   }
-  // };
+    if (!result.canceled) {
+      setImage(result.assets[0]);
+    }
+  };
 
   const takePhoto = async () => {
     // Request camera permissions
@@ -134,8 +134,8 @@ export default function CreateReport() {
           <View className="flex-1">
             <View className="items-center mt-4 gap-4">
               {error && (
-                <Text className="text-base text-red-500">
-                  An error occurred while create a report.
+                <Text className="text-sm text-center text-red-500">
+                  {error.message}
                 </Text>
               )}
               {image && (
@@ -144,10 +144,20 @@ export default function CreateReport() {
                   className="mt-4 w-full h-48 object-cover"
                 />
               )}
-              <Button
-                title="Pick an image from camera roll"
-                onPress={takePhoto}
-              />
+              <View className="flex-row items-center gap-2">
+                <TouchableOpacity
+                  onPress={takePhoto}
+                  className="bg-gray-200 p-4 rounded-xl"
+                >
+                  <Text>Take a photo</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={pickImage}
+                  className="bg-gray-200 p-4 rounded-xl"
+                >
+                  <Text>Select an image</Text>
+                </TouchableOpacity>
+              </View>
             </View>
             <View className="gap-1 mt-4">
               <Text className="text-base text-gray-400">Description</Text>

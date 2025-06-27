@@ -38,10 +38,10 @@ export default function SignUpScreen() {
       return;
 
     mutate({
-      email: email.toLowerCase(),
+      email: email.toLowerCase().trim(),
       password,
-      name: fullName,
-      username: username.toLowerCase(),
+      name: fullName.trim(),
+      username: username.toLowerCase().trim(),
     });
   };
 
