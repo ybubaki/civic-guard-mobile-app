@@ -9,8 +9,6 @@ export default function IssueDetailsScreen() {
   const { id } = useLocalSearchParams();
   const { data, isPending, error } = useGetIssueById(id as string);
 
-  console.log(typeof data?.data?.latitude);
-
   return (
     <ScrollView className="flex-1 p-4">
       <View className="flex-row items-center justify-between py-4 px-2 border-b border-gray-300">
@@ -60,6 +58,12 @@ export default function IssueDetailsScreen() {
               <Text className="text-base font-medium">Category:</Text>
               <Text className="text-gray-500 text-base">
                 {data?.data?.category}
+              </Text>
+            </View>
+            <View className="flex-row items-center gap-2">
+              <Text className="text-base font-medium">Status:</Text>
+              <Text className="text-gray-500 text-base">
+                {data?.data?.status}
               </Text>
             </View>
           </View>

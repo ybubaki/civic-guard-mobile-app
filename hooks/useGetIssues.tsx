@@ -6,7 +6,7 @@ const useGetIssues = () => {
   const { token } = useAuthStore();
 
   return useQuery({
-    queryKey: ["issues"],
+    queryKey: [],
     queryFn: () => getIssues(token),
   });
 };
