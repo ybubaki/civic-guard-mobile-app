@@ -2,23 +2,36 @@ import { Feather, Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { useAuthStore } from "../../state/auth.state";
+import { useFocusEffect } from "expo-router";
+import { getMe } from "../../service/auth.service";
+import { useState } from "react";
 
 export default function SettingScreen() {
-  const { user, logout } = useAuthStore();
+  const { user, logout, token } = useAuthStore();
+
+  const [profile, setProfile] = useState(user);
 
   if (!user) {
     router.replace("/login");
     return null;
   }
 
+  useFocusEffect(() => {
+    getMe(token as string).then((res) => {
+      if (res.data) {
+        setProfile(res.data);
+      }
+    });
+  });
+
   return (
     <ScrollView className="flex-1 bg-white p-4">
       <View className="rounded-full items-center justify-center">
-        <View className="p-8 border border-gray-300 rounded-full">
-          {user && (
+        <View className=" border h-28 w-28 items-center justify-center border-gray-300 rounded-full">
+          {profile && (
             <Text className="text-3xl font-semibold">
-              {`${user.name.split(" ")[0][0]}${
-                user.name.split(" ").slice(-1)[0][0]
+              {`${profile.name.split(" ")[0][0]}${
+                profile.name.split(" ").slice(-1)[0][0]
               }`}
             </Text>
           )}
@@ -26,34 +39,34 @@ export default function SettingScreen() {
         <View className="mt-4 items-center gap-1">
           <View className="flex flex-row items-center mb-4">
             <Ionicons
-              name={user.rating > 0 ? "star" : "star-outline"}
+              name={profile.rating > 0 ? "star" : "star-outline"}
               size={20}
-              color={user.rating > 0 ? "gold" : "gray"}
+              color={profile.rating > 0 ? "gold" : "gray"}
             />
             <Ionicons
-              name={user.rating > 1 ? "star" : "star-outline"}
+              name={profile.rating > 1 ? "star" : "star-outline"}
               size={20}
-              color={user.rating > 1 ? "gold" : "gray"}
+              color={profile.rating > 1 ? "gold" : "gray"}
             />
             <Ionicons
-              name={user.rating > 2 ? "star" : "star-outline"}
+              name={profile.rating > 2 ? "star" : "star-outline"}
               size={20}
-              color={user.rating > 2 ? "gold" : "gray"}
+              color={profile.rating > 2 ? "gold" : "gray"}
             />
             <Ionicons
-              name={user.rating > 3 ? "star" : "star-outline"}
+              name={profile.rating > 3 ? "star" : "star-outline"}
               size={20}
-              color={user.rating > 3 ? "gold" : "gray"}
+              color={profile.rating > 3 ? "gold" : "gray"}
             />
             <Ionicons
-              name={user.rating > 4 ? "star" : "star-outline"}
+              name={profile.rating > 4 ? "star" : "star-outline"}
               size={20}
-              color={user.rating > 4 ? "gold" : "gray"}
+              color={profile.rating > 4 ? "gold" : "gray"}
             />
           </View>
 
-          <Text className="font-semibold text-2xl">{user.name}</Text>
-          <Text className="text-gray-500 text-lg">{user.email}</Text>
+          <Text className="font-semibold text-2xl">{profile.name}</Text>
+          <Text className="text-gray-500 text-lg">{profile.email}</Text>
         </View>
       </View>
       <View className="mt-6">

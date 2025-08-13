@@ -2,8 +2,11 @@ import { ScrollView, Text, View } from "react-native";
 import MyBarChart from "../../components/charts/my-bar-chart";
 import MyPieChart from "../../components/charts/my-pie-chart";
 import useGetIssues from "../../hooks/useGetIssues";
+import { useFocusEffect } from "expo-router";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function ChartScreen() {
+  const queryClient = useQueryClient();
   const { data, isPending, error } = useGetIssues();
 
   if (isPending) return <Text>Loading issues...</Text>;
@@ -93,6 +96,10 @@ export default function ChartScreen() {
       }
     });
   };
+
+  useFocusEffect(() => {
+    queryClient.invalidateQueries();
+  });
 
   return (
     <ScrollView className="flex-1 bg-white p-4">

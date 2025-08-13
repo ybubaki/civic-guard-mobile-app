@@ -74,3 +74,17 @@ export const forgotPassword = async (data: any) => {
     throw error?.response?.data;
   }
 };
+
+export const getMe = async (token?: string) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error: any) {
+    console.error("Error getting user:", error?.response?.data);
+    throw error?.response?.data;
+  }
+};
