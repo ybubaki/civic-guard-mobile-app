@@ -3,12 +3,14 @@ interface RegisterData {
   username: string;
   email: string;
   password: string;
+  phone: string;
 }
 
 interface UpdateData {
   name?: string;
   username?: string;
   email?: string;
+  phone?: string;
 }
 
 interface LoginData {

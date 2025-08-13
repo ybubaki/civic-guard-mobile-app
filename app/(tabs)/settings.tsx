@@ -1,4 +1,4 @@
-import { Feather } from "@expo/vector-icons";
+import { Feather, Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { useAuthStore } from "../../state/auth.state";
@@ -23,7 +23,35 @@ export default function SettingScreen() {
             </Text>
           )}
         </View>
-        <View className="mt-6 items-center gap-1">
+        <View className="mt-4 items-center gap-1">
+          <View className="flex flex-row items-center mb-4">
+            <Ionicons
+              name={user.rating > 0 ? "star" : "star-outline"}
+              size={20}
+              color={user.rating > 0 ? "gold" : "gray"}
+            />
+            <Ionicons
+              name={user.rating > 1 ? "star" : "star-outline"}
+              size={20}
+              color={user.rating > 1 ? "gold" : "gray"}
+            />
+            <Ionicons
+              name={user.rating > 2 ? "star" : "star-outline"}
+              size={20}
+              color={user.rating > 2 ? "gold" : "gray"}
+            />
+            <Ionicons
+              name={user.rating > 3 ? "star" : "star-outline"}
+              size={20}
+              color={user.rating > 3 ? "gold" : "gray"}
+            />
+            <Ionicons
+              name={user.rating > 4 ? "star" : "star-outline"}
+              size={20}
+              color={user.rating > 4 ? "gold" : "gray"}
+            />
+          </View>
+
           <Text className="font-semibold text-2xl">{user.name}</Text>
           <Text className="text-gray-500 text-lg">{user.email}</Text>
         </View>

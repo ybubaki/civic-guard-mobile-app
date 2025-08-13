@@ -100,7 +100,7 @@ export default function ChartScreen() {
         <Text className="text-xl text-center font-semibold">
           Number of complaints
         </Text>
-        <MyBarChart data={data?.data || []} />
+        {data?.data?.length > 0 && <MyBarChart data={data?.data || []} />}
       </View>
       {data?.data?.length > 0 && (
         <>
@@ -126,6 +126,9 @@ export default function ChartScreen() {
             />
           </View>
         </>
+      )}
+      {data?.data?.length === 0 && (
+        <Text className="text-center mt-12">No data available</Text>
       )}
     </ScrollView>
   );

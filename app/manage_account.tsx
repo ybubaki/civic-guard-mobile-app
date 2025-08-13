@@ -30,15 +30,21 @@ export default function ManageAccountScreen() {
   const [fullName, setFullName] = useState(user?.name || "");
   const [username, setUsername] = useState(user?.username || "");
   const [email, setEmail] = useState(user?.email || "");
+  const [phone, setPhone] = useState(user?.phone || "");
 
   const handleUpdate = async () => {
-    if (fullName === "" || username === "" || email === "") return;
+    if (fullName === "" || username === "" || email === "" || phone === "")
+      return;
+
+    const phoneRegex = /^[0-9]+$/;
+    if (!phoneRegex.test(phone)) return;
 
     mutate({
       userData: {
         name: fullName,
         username,
         email,
+        phone,
       },
       token,
     });
@@ -91,6 +97,17 @@ export default function ManageAccountScreen() {
             onChangeText={setEmail}
             keyboardType="email-address"
             icon="mail"
+          />
+        </View>
+        <View className="gap-1">
+          <Text className="text-base text-gray-400">Phone Number</Text>
+          <InputField
+            placeholder="Enter your phone number"
+            defaultValue={user?.phone || ""}
+            value={phone}
+            onChangeText={setPhone}
+            keyboardType="number-pad"
+            icon="phone"
           />
         </View>
         <TouchableOpacity

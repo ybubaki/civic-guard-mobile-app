@@ -116,21 +116,22 @@ export default function CreateReport() {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
       style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} className="flex-1">
-        <ScrollView className="flex-1 p-4 bg-white">
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <ScrollView
+          className="flex-1 p-4 bg-white"
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={{ flexGrow: 1 }}
+        >
           <View className="flex-row items-center justify-between py-4 border-b border-gray-300">
             <Text className="text-2xl font-semibold">Report a new issue</Text>
-            <TouchableOpacity
-              onPress={() => {
-                router.dismiss();
-              }}
-            >
+            <TouchableOpacity onPress={() => router.dismiss()}>
               <Feather name="x-circle" size={24} color="gray" />
             </TouchableOpacity>
           </View>
+
           <View className="flex-1">
             <View className="items-center mt-4 gap-4">
               {error && (
@@ -159,6 +160,7 @@ export default function CreateReport() {
                 </TouchableOpacity>
               </View>
             </View>
+
             <View className="gap-1 mt-4">
               <Text className="text-base text-gray-400">Description</Text>
               <TextInput
@@ -172,6 +174,7 @@ export default function CreateReport() {
                 className="border border-gray-300 rounded-lg px-4 py-2"
               />
             </View>
+
             <View className="gap-1 mt-4">
               <Text className="text-base text-gray-400">City</Text>
               <TextInput
@@ -183,13 +186,16 @@ export default function CreateReport() {
               />
             </View>
           </View>
+
           <View className="mt-6">
             <TouchableOpacity
               onPress={handleReport}
-              disabled={isPending || !image || description == "" || city == ""}
+              disabled={
+                isPending || !image || description === "" || city === ""
+              }
               className="bg-[#08A045] items-center disabled:bg-gray-400 px-6 py-4 rounded-full w-full mt-6"
             >
-              <Text className="text-white font-semibold ">
+              <Text className="text-white font-semibold">
                 {isPending ? "Loading..." : "Report"}
               </Text>
             </TouchableOpacity>

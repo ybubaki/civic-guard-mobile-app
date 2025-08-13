@@ -8,11 +8,15 @@ import {
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import { useAuthStore } from "@/state/auth.state";
 import { useMutation } from "@tanstack/react-query";
 import { chat } from "@/service/chat.service";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import { router } from "expo-router";
 
 export default function HelpScreen() {
@@ -64,8 +68,11 @@ export default function HelpScreen() {
     });
   };
 
+  const insets = useSafeAreaInsets();
+
   return (
     <SafeAreaView className="flex-1 bg-white">
+      {/* Header */}
       <View className="flex-row items-center p-4 justify-between">
         <TouchableOpacity onPress={() => router.back()}>
           <Feather name="arrow-left" size={24} color="black" />
@@ -73,9 +80,19 @@ export default function HelpScreen() {
         <Text className="text-xl font-semibold">Help & Support</Text>
         <View />
       </View>
-      <KeyboardAvoidingView className="flex-1">
+
+      {/* Keyboard Avoiding Wrapper */}
+      <KeyboardAvoidingView
+        className="flex-1"
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "ios" ? insets.top : 0} // adjust if header height changes
+      >
         <View className="flex-1 bg-white">
-          <ScrollView className="flex-1 pt-8 px-4">
+          {/* Scrollable Messages */}
+          <ScrollView
+            className="flex-1 pt-8 px-4"
+            keyboardShouldPersistTaps="handled"
+          >
             {messages.map((message) => (
               <MessageItem
                 key={message.id}
@@ -91,6 +108,8 @@ export default function HelpScreen() {
               />
             )}
           </ScrollView>
+
+          {/* Input Area */}
           <View className="flex-col gap-2 p-4">
             {!firstMessage && (
               <>
@@ -124,6 +143,8 @@ export default function HelpScreen() {
                   className="flex-1"
                   value={input}
                   onChangeText={setInput}
+                  returnKeyType="send"
+                  onSubmitEditing={() => handleSendMessage()}
                 />
                 <TouchableOpacity
                   disabled={isPending}
