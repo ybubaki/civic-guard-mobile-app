@@ -63,7 +63,11 @@ export default function IssueDetailsScreen() {
             <View className="flex-row items-center gap-2">
               <Text className="text-base font-medium">Status:</Text>
               <Text className="text-gray-500 text-base">
-                {data?.data?.status}
+                {data?.data?.status === "open"
+                  ? "Open"
+                  : data?.data?.status === "in_progress"
+                  ? "In Progress"
+                  : "Resolved"}
               </Text>
             </View>
           </View>
